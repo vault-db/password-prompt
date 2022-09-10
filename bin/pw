@@ -1,0 +1,13 @@
+#!/usr/bin/env node
+
+'use strict'
+
+const pw = require('pw')
+
+process.stderr.write('Password: ')
+
+let p = pw('*', process.stdin, process.stderr, (password) => {
+  password = Buffer.from(password, 'binary').toString('utf8')
+  console.log({ password })
+  process.exit()
+})

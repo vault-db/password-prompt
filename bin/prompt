@@ -1,0 +1,25 @@
+#!/usr/bin/env node
+
+'use strict'
+
+const colors = require('@colors/colors')
+const prompt = require('prompt')
+
+colors.disable()
+prompt.message = ''
+
+async function main () {
+  console.log({ start: prompt.start() })
+
+  try {
+    let properties = { Passphrase: { hidden: true, replace: '*' } }
+    let { Passphrase } = await prompt.get({ properties })
+    console.log({ Passphrase })
+  } catch (error) {
+    // do nothing
+  }
+
+  prompt.stop()
+}
+
+main()
